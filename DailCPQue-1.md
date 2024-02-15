@@ -123,12 +123,25 @@ int main()
     // atleast has the positive divisors {1,n}
     int count=2;
 
-    // The reason we set our limit of i to n/2 is because
+    // The reason we set our limit of i to sqrt(n) is because
     // it is more efficient than setting the limit to any other 
-    // uper bound as the highest divisor of any number is n/2 itself
-    for(int i=2;i<=n/2;i++){
+    // uper bound as the highest divisor of any number is sqrt(n) itself
+    // By highest here i mean lets take an example of 64
+    //Divisors of 64 are {1,2,4,8,16,32,64}
+    // although we know that sqrt(64)=8 clearly we can see that if we 
+    // have a divisor 2 then it has to be paired with 32 ({2,32}) inorder to be 
+    // equal to 64 so it comes as a pair. 8 is paired up with 8 it self but ({8,8})
+    //  since its  the same number we only mention it once, hence we only need to check 
+    // all the divisors till sqrt(n) after sqrt(n) all divisors are basically
+    // the reverse of the divisor pairs (going along with the example we already know
+    // that {2,32} exists so why recalculate {32,2}).
+    
+    for(int i=2;i<=sqrt(n);i++){
         if(n%i==0){
             count++;
+        }
+        if(count>3){
+            break;
         }
     }
 
